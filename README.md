@@ -82,6 +82,30 @@ img2.src = blo(address, 24); // set it to 24px
 </details>
 
 <details>
+<summary><b><code>bloWithColor(address: Address, pallette: Palette, size = 64): string</code></b></summary>
+<br>
+
+Get a data URI string representing the identicon as an SVG image.
+
+Palette is an array of colors [background, color, spot] in HSL.
+
+The `size` paramater shouldn’t usually be needed, as the image will stay sharp no matter what the size of the `img` element is.
+
+Example:
+
+```ts
+import { blo } from "blo";
+
+img.src = bloWithColor(address, [
+  Uint16Array.from([0, 0, 0]) // Background
+  Uint16Array.from([154, 100, 50]) // Color
+  Uint16Array.from([250, 100, 50]) // Spot
+]); // Palette with 3 Colors, each color is HSL of Uint16Array
+```
+
+</details>
+
+<details>
 <summary><b><code>bloSvg(address: Address, size = 64): string</code></b></summary>
 <br>
 
