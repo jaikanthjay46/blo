@@ -1,4 +1,4 @@
-import type { Address } from "./types";
+import type { Address, Palette } from "./types";
 
 import { randomPalette } from "./image";
 import { seedRandom } from "./random";
@@ -8,10 +8,16 @@ const SVG_START = `<svg `
   + `viewBox="0 0 8 8" `
   + `shape-rendering="optimizeSpeed" `; // optimizeSpeed stays sharp thanks to using <path />
 
-export function svg(address: Address, size: number) {
+export function svg(address: Address, size: number, pallette?: Palette) {
   const random = seedRandom(address.toLowerCase());
 
-  const [b, c, s] = randomPalette(random);
+
+  let [b, c, s] = randomPalette(random);
+  if (pallette) {
+    b = pallette[0] ?? b;
+    c = pallette[1] ?? c;
+    s = pallette[2] ?? s;
+  }
 
   const paths = [
     `M0,0H8V8H0z`, // background
